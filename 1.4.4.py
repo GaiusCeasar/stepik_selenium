@@ -3,14 +3,14 @@ from selenium.webdriver.common.by import By
 import time
 
 try:
-    link = "http://suninjuly.github.io/registration2.html"
+    link = "http://suninjuly.github.io/registration1.html"
     browser = webdriver.Chrome()
     browser.get(link)
 
     # Ваш код, который заполняет обязательные поля"
-    input1 = browser.find_element(By.CSS_SELECTOR, "input.form-control.first")
+    input1 = browser.find_element(By.CSS_SELECTOR, "[class='first_block'] .form-control.first")
     input1.send_keys("Ivan")
-    input2 = browser.find_element(By.CSS_SELECTOR, "input.form-control.second")
+    input2 = browser.find_element(By.CSS_SELECTOR, "[class='first_block'] .form-control.second")
     input2.send_keys("Petrov")
     input4 = browser.find_element(By.CSS_SELECTOR, "input.form-control.third")
     input4.send_keys("Russia")
@@ -33,6 +33,6 @@ try:
 
 finally:
     # ожидание чтобы визуально оценить результаты прохождения скрипта
-    time.sleep(10)
+    time.sleep(3)
     # закрываем браузер после всех манипуляций
     browser.quit()
