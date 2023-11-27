@@ -18,7 +18,7 @@ def test_guest_should_see_login_link(browser):
         login = environ.get('LOGIN')
         password = environ.get('PASS')
         browser.get(link)
-        element = WebDriverWait(browser, 5).until(
+        element = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located((By.ID, "ember33"))
         )
         element.click()
