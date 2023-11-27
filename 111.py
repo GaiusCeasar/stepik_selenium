@@ -36,7 +36,7 @@ def test_guest_should_see_login_link(browser, number):
         browser.find_element(By.ID, "id_login_email").send_keys(login)
         browser.find_element(By.ID, "id_login_password").send_keys(password)
         browser.find_element(By.CLASS_NAME, "sign-form__btn").click()
-        browser.implicity_wait(10)
+        time.sleep(10)
         input = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located((By.TAG_NAME, "textarea"))
         )
@@ -44,16 +44,17 @@ def test_guest_should_see_login_link(browser, number):
         print(answer)
         # input.click()
         input.send_keys(answer)
-        # time.sleep(5)
+
         sunm = WebDriverWait(browser, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "submit-submission"))
+            EC.element_to_be_clickable((By.CLASS_NAME, "submit-submission"))
         )
         sunm.click()
         priverka = WebDriverWait(browser, 10).until(
-            EC.visibility_of_element_located((By.CLASS_NAME, "smart-hints__hint"))).text
-        assert priverka == "Correct!"
+            EC.visibility_of_element_located((By.CLASS_NAME, "smart-hints__hint")))
+        print(priverka)
+        assert "Correct!" == priverka.text
     finally:
         # ожидание чтобы визуально оценить результаты прохождения скрипта
-        time.sleep(10)
+        time.sleep(3)
         # закрываем браузер после всех манипуляций
         browser.quit()
